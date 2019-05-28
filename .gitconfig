@@ -1,0 +1,8 @@
+[user]
+	email = shfx@shfx.źpl
+	name = Marcin Wiśniowski
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	autocrlf = input
+[branch]
+	autosetuprebase = always

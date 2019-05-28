@@ -1,0 +1,70 @@
+#+TITLE: My .dotfiles
+#+OPTIONS: num:nil
+
+* Synopsis
+
+Simple dotfiles with a manager based on [[https://medium.com/@augusteo/simplest-way-to-sync-dotfiles-and-config-using-git-14051af8703a][post]] on [[https://medium.com/][medium.com]] from [[https://medium.com/@augusteo][@augusteo]].
+
+You'll need to have ~git~ installed and ready (probably using ~brew~)
+
+* Init 
+
+To initialize dotfiles repo, you need to run this code
+
+#+BEGIN_SRC shell
+  # Make .dotfiles dir.
+
+  mkdir $HOME/.dotfiles
+
+  # Initlaize bare repo somewhere outside home dir
+
+  git init --bare $HOME/.dotfiles
+
+  # Set temporary alias for our special git command
+
+  alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+  # (Optionally) Set local .dotfiles bare git repo to hide untracked files
+  # I personally don't like that
+
+  config config --local status.showUntrackedFiles no
+
+  # Add remote to your prefered git repository
+
+  config remote add origin [your repo]
+
+  # Add our alias to shell config (mine is zsh)
+
+  echo "alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.zshrc
+
+  # Add files, commit and push to repo
+
+  config add .zshrc
+  config commit -m "Initial commit"
+  config push origin master
+#+END_SRC
+
+Check my sample ~.gitignore~ file to see how to ignore some directories and files and in which order
+
+* Pulling
+
+If you want to pull changes from the repo when you're already have it on the remote server, you'll need to clone it first and then use the magit alias to pull the changes
+
+#+BEGIN_SRC shell
+  # Clone the repo
+
+  git clone $HOME/.dotfiles
+
+  # Set the alias
+
+  alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+  # Pull the changes
+
+  config pull
+#+END_SRC
+
+* Credits
+
+[[https://www.augusteo.com/][Victor Augusteo]]
+

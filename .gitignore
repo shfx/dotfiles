@@ -1,0 +1,15 @@
+# Ignore all files
+/*
+
+# Unignore README.org and all dot-files
+!/.*
+!/README.org
+
+# Ignore unwanted dot-files
+/.dotfiles/
+/.emacs.d/
+/.npm/
+/.SoulseekQt/
+/.config/yarn
+/.cache
+/.oh-my-zsh

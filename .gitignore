@@ -1,3 +1,9 @@
+/*
+
+!/.*
+
 # Ignore unwanted dot-files
+/.emacs.d
+/.dotfiles
 /.ssh/id_rsa
 /.viminfo

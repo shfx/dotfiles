@@ -1,24 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/opera_user/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="imajes"
 DEFAULT_USER=$USER
 
-plugins=(git emacs ssh-agent brew colored-man-pages)
+# Oh My Zsh Plugins
+plugins=(git emacs ssh-agent brew colored-man-pages, node)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-
-OPERA_PATH="$HOME/Projects/work/"
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export PATH="/usr/local/sbin:$PATH"
@@ -30,12 +18,12 @@ export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 export PATH="$HOME/Projects/depot_tools:$PATH"
 
+# Work dir
+OPERA_PATH="$HOME/Projects/work/"
+
+# Lang and editor
 export LANG="en_US.UTF-8"
 export EDITOR="emacsclient"
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
 
 # Compilation flags
 export GYP_DEFINES="component=shared_library target_arch=x64 dcheck_always_on=1"
@@ -52,24 +40,16 @@ export CCACHE_MAXSIZE=20G # Optional, default is 5GB after full rebuild it takes
 export CCACHE_PREFIX=icecc
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# aliases
 alias gno="echo $CCACHE_PREFIX && $OPERA_PATH/desktop/gn_opera.py --ccache --release --force ffmpeg_use_atomics_fallback=true enable_precompiled_headers=false enable_pack_verification=false"
 alias gng="gno  product=\\\"gx\\\""
 alias gnoo="CCACHE_PREFIX=\"\" $OPERA_PATH/desktop/gn_opera.py --ccache --release --force ffmpeg_use_atomics_fallback=true enable_precompiled_headers=false enable_pack_verification=false"
 alias gngg="gnoo  product=\\\"gx\\\""
 
 function nj () {
-    ICECC_VERSION=`/Users/opera_user/Projects/icecream-chromium-mac/geticeccversion.sh /Users/opera_user/Projects/work/chromium/src` \
+    export ICECC_VERSION=`$HOME/Projects/icecream-chromium-mac/geticeccversion.sh $HOME/Projects/work/chromium/src`
     ninja -j70 -C $OPERA_PATH/chromium/src/out/Release opera
 }
 
@@ -77,6 +57,7 @@ alias o="$OPERA_PATH/chromium/src/out/Release/Opera.app/Contents/MacOS/Opera --w
 
 alias tt="npm start --prefix $OPERA_PATH/desktop/common/resources/shared/toolkit/"
 alias up="git submodule update $OPERA_PATH/chromium/src"
+alias config='/usr/bin/git --git-dir=/Users/opera_user/.dotfiles/ --work-tree=/Users/opera_user'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -88,8 +69,6 @@ export NVM_DIR="$HOME/.nvm"
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /Users/opera_user/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/opera_user/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-alias config='/usr/bin/git --git-dir=/Users/opera_user/.dotfiles/ --work-tree=/Users/opera_user'
 
 PURE_GIT_UNTRACKED_DIRTY=0
 PURE_GIT_UNTRACKED_DIRTY=0

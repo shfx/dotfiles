@@ -5,3 +5,4 @@ name = Marcin Wisniowski
 email = shfx@shfx.pl
 [core]
 	excludesfile = /Users/opera_user/.gitignoreglobal
+	precomposeUnicode = true

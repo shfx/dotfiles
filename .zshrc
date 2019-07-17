@@ -1,4 +1,4 @@
-\export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="imajes"
 DEFAULT_USER=$USER
@@ -38,7 +38,7 @@ alias stable="cd $WORK_PATH"
 alias dev="cd $WORK_DEV_PATH"
 
 function gnn () {
-    echo $CCACHE_PREFIX
+    CCACHE_PREFIX=""
     
     if [[ "$PWD" = "$WORK_PATH" ]]; then
         echo "GN STABLE"
@@ -100,3 +100,5 @@ PURE_GIT_UNTRACKED_DIRTY=0
 
 autoload -U promptinit; promptinit
 prompt pure
+
+neofetch

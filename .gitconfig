@@ -1,8 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-name = Marcin Wisniowski
+	name = Marcin Wiśniowski
 email = shfx@shfx.pl
 [core]
 	excludesfile = /Users/opera_user/.gitignoreglobal
-	precomposeUnicode = true
+	quotepath = false
+	editor = emacs
+[github]
+	user = Marcin Wiśniowski <shfx@shfx.pl>

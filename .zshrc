@@ -8,7 +8,6 @@ plugins=(git emacs ssh-agent brew colored-man-pages node)
 
 source $ZSH/oh-my-zsh.sh
 
-
 # Lang and editor
 export LANG="en_US.UTF-8"
 export EDITOR="emacsclient"
@@ -25,7 +24,8 @@ export ICECC_NETNAME=IceWro
 export CCACHE_SLOPPINESS=time_macros,include_file_mtime,file_macro
 export CCACHE_CPP2=yes
 export CCACHE_MAXSIZE=40G
-export CCACHE_PREFIX=icecc
+
+export PATH=$PATH:/Users/shfx/Projects/depot_tool
 
 # ssh
 export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
@@ -38,16 +38,16 @@ alias stable="cd $WORK_PATH"
 alias dev="cd $WORK_DEV_PATH"
 
 function gnn () {
-    CCACHE_PREFIX=""
-    
+    echo $CCACHE_PREFIX
+
     if [[ "$PWD" = "$WORK_PATH" ]]; then
         echo "GN STABLE"
-        desktop/gn_opera.py --ccache --release --force ffmpeg_use_atomics_fallback=true enable_precompiled_headers=false enable_pack_verification=false
-        
+        desktop/gn_opera.py --ccache --release --force ffmpeg_use_atomics_fallback=true enable_precompiled_headers=false enable_pack_verification=false product=\"gx\"
+
     elif [[ "$PWD" = "$WORK_DEV_PATH" ]]; then
         echo "GN DEV"
         desktop/gn_opera.py --ccache --release --force ffmpeg_use_atomics_fallback=true enable_precompiled_headers=false enable_pack_verification=false product=\"gx\"
-        
+
     else
         echo "wrong directory"
     fi
@@ -55,11 +55,11 @@ function gnn () {
 
 function nj () {
     export ICECC_VERSION=`$HOME/Projects/icecream-chromium-mac/geticeccversion.sh $HOME/Projects/work/chromium/src`
-    
+
     if [[ "$PWD" = "$WORK_PATH" ]]; then
         echo "Building STABLE branch"
         ninja -C $WORK_PATH/chromium/src/out/Release opera
-        
+
     elif [[ "$PWD" = "$WORK_DEV_PATH" ]]; then
         echo "Building DEV branch"
         ninja -C $WORK_DEV_PATH/chromium/src/out/Release opera
@@ -71,10 +71,10 @@ function nj () {
 function o () {
     if [[ "$PWD" = "$WORK_PATH" ]]; then
         $WORK_PATH/chromium/src/out/Release/Opera.app/Contents/MacOS/Opera --webui-debug-mode=live --disable-update --show-component-extension-options --show-component-extension-with-background-pages --user-data-dir=$HOME/Projects/clean-profile
-        
+
     elif [[ "$PWD" = "$WORK_DEV_PATH" ]]; then
-        $WORK_DEV_PATH/chromium/src/out/Release/Opera.app/Contents/MacOS/Opera --webui-debug-mode=live --disable-update --show-component-extension-options --show-component-extension-with-background-pages --user-data-dir=$HOME/Projects/clean-profile
-        
+        $WORK_DEV_PATH/chromium/src/out/Release/Opera.app/Contents/MacOS/Opera --webui-debug-mode=live --disable-update --show-component-extension-options --show-component-extension-with-background-pages --user-data-dir=$HOME/Projects/clean-profile --gx-test-server
+
     else
         echo "wrong directory"
     fi
@@ -82,7 +82,7 @@ function o () {
 
 alias tt="npm start --prefix $WORK_PATH/desktop/common/resources/shared/toolkit/"
 alias up="git submodule update $WORK_PATH/chromium/src"
-alias config='/usr/bin/git --git-dir=/Users/opera_user/.dotfiles/ --work-tree=/Users/opera_user'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -96,9 +96,6 @@ export NVM_DIR="$HOME/.nvm"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 PURE_GIT_UNTRACKED_DIRTY=0
-PURE_GIT_UNTRACKED_DIRTY=0
 
 autoload -U promptinit; promptinit
 prompt pure
-
-neofetch

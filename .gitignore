@@ -4,6 +4,15 @@
 
 # Ignore unwanted dot-files
 /.emacs.d
+/.bash_history
+/.zsh_history
 /.dotfiles
-/.ssh/id_rsa
+/.oh-my-zsh
+
+/.ssh
+!/.ssh/*.pub
+
 /.viminfo
+/.orgfiles/
+/.npm
+/.password-store

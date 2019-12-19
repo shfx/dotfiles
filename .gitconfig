@@ -9,3 +9,5 @@ email = shfx@shfx.pl
 	editor = emacs
 [github]
 	user = Marcin Wiśniowski <shfx@shfx.pl>
+[pull]
+	rebase = true

@@ -18,7 +18,7 @@
     "jsonlint": "^1.6.3",
     "jsonlint": "^1.6.3",
     "lofi": "^0.1.2",
-    "madge": "^3.6.0",
+    "madge": "^4.0.1",
     "nativefier": "^7.6.12",
     "ndb": "^1.1.5",
     "node-notifier-cli": "^1.1.2",
